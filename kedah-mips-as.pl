@@ -4,7 +4,7 @@ use Getopt::Std;
 use Math::BigInt;
 
 
-$ver = '0.0.7';
+$ver = '0.0.8';
 
 die <<EOT unless @ARGV && !grep { /^--?h|\?/ } @ARGV;
 
@@ -1520,8 +1520,38 @@ P2_CONST_REDO:
     }
 
 
+    elsif( $a eq 'RDHWR' ){
 
+        $op  = '011111';
+               
+        $rt  = bits5  $f[0];
+        $rd  = bits5  $f[1];
 
+        $instr = pack_instruction $op, '00000', $rt, $rd, '00000', '111011';
+        $instr_bin = join '_',    $op, '00000', $rt, $rd, '00000', '111011';         
+    }
+
+    elsif( $a eq 'RDPGPR' ){
+
+        $op  = '010000';
+               
+        $rd  = bits5  $f[0];
+        $rt  = bits5  $f[1];
+
+        $instr = pack_instruction $op, '01010', $rt, $rd, '00000', '000000';
+        $instr_bin = join '_',    $op, '01010', $rt, $rd, '00000', '000000';         
+    }
+
+    elsif( $a eq 'WRPGPR' ){
+
+        $op  = '010000';
+               
+        $rd  = bits5  $f[0];
+        $rt  = bits5  $f[1];
+
+        $instr = pack_instruction $op, '01110', $rt, $rd, '00000', '000000';
+        $instr_bin = join '_',    $op, '01110', $rt, $rd, '00000', '000000';         
+    }
 
     elsif( $a eq 'OR' ){
 
@@ -2674,7 +2704,3 @@ P2_CONST_REDO:
     }
     $ip += 4;
 }
-
-
-
-
