@@ -1,3 +1,3 @@
 # kedah-mips-as
 
-Kedah Assembler - ассмеблер для MIPS64EL, в отличие от других (nasm, gas) не осуществляет вообще никакой оптимизации, поэтому нужно внимательнее следить за delay слотами.
+Kedah Assembler - assembler for MIPS64EL, unlike the others (nasm, gas) **do not perform any optimization at all**, therefore you need to carefully check your branch delay slotes.
